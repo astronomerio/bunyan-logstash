@@ -45,4 +45,10 @@ describe('udp stream', () => {
     });
     udpStream.client.emit('error');
   });
+
+  it('closes connection', () => {
+    const closeConnectionStub = sinon.stub(udpStream.client, 'close');
+    udpStream.closeConnection();
+    assert.isTrue(closeConnectionStub.calledOnce);
+  });
 });
